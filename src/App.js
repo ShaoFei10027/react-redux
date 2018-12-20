@@ -1,28 +1,28 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { connect } from 'react-redux'
+import { addv, delv } from './index.redux'
 import './App.css';
 
 class App extends Component {
   render() {
+    const { num, addv, delv } = this.props
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        {num}
+        <button onClick={addv}>add</button>
+        <button onClick={delv}>del</button>
       </div>
     );
   }
 }
 
+const mpaStateToProps = (state)=>{
+  return {
+    num : state
+  }
+}
+
+
+const actionCreators = { addv, delv }
+App = connect(mpaStateToProps, actionCreators)(App)
 export default App;
